@@ -10,6 +10,9 @@ public class Collectible : MonoBehaviour
     //Effect to apply to the object
     public GameObject onCollectEffect;
 
+    [SerializeField]
+    private int point;  
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
