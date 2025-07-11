@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bad
   - good
+  - collectibleArea
   layers:
   - Default
   - TransparentFX
