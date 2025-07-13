@@ -13,22 +13,17 @@ public class Collectible : MonoBehaviour
     [SerializeField]
     private int point;  
 
+    private GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.Rotate(0, rotationSpeed, 0);
-    }
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.isGameActive)
         {
 
             //Destroy the collectible
@@ -36,6 +31,11 @@ public class Collectible : MonoBehaviour
 
             //Intanciate the particule effect
             Instantiate(onCollectEffect, transform.position, transform.rotation);
+
+            //update total
+            gameManager.updateTotalCollected(gameObject);
+            gameManager.UpdateText();
         }
     }
+
 }

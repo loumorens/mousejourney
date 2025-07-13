@@ -18,6 +18,11 @@ public class SpawnControllerOnPlane : MonoBehaviour
 
     private float planeLenght;
     private float planeWidth;
+ 
+    [SerializeField]
+    public int numberGoodFoodSpawned { get; private set; }
+    [SerializeField]
+    public int numberBadFoodSpawned { get; private set; }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +31,8 @@ public class SpawnControllerOnPlane : MonoBehaviour
         plane = gameObject.transform;
         planeLenght = plane.GetComponent<MeshRenderer>().bounds.size.x / 2;
         planeWidth = plane.GetComponent<MeshRenderer>().bounds.size.z / 2;
+        numberGoodFoodSpawned = 0;
+        numberBadFoodSpawned = 0;
         spawnInArray();
     }
 
@@ -33,11 +40,12 @@ public class SpawnControllerOnPlane : MonoBehaviour
 
     void spawnInArray()
     {
-         for (int i = 0; i < numberObjectToSpawn; i++)
+        for (int i = 0; i < numberObjectToSpawn; i++)
         {
             GameObject objToSpawn = spawnObjectsPrefab[Random.Range(0, spawnObjectsPrefab.Length)];
             Debug.Log("SpawnControllerOnPlane::Start::Object to Spawn selected : " + objToSpawn.name);
             Spawn(objToSpawn);
+            updateNumberFood(objToSpawn);
         }
     }
     // Update is called once per frame
@@ -45,7 +53,29 @@ public class SpawnControllerOnPlane : MonoBehaviour
     {
         float posX = Random.Range(-planeLenght, planeLenght) + plane.position.x;
         float posZ = Random.Range(-planeWidth, planeWidth) + plane.position.z;
-        Instantiate(objToSpawn, new Vector3(posX,  + objectHeight, posZ), objToSpawn.transform.rotation);
-        Debug.Log("SpawnControllerOnPlane::Spawn:: " + objToSpawn.name + "instanciated at posX :"+posX+" and posZ:"+posZ);
+        Instantiate(objToSpawn, new Vector3(posX, +objectHeight, posZ), objToSpawn.transform.rotation);
+        Debug.Log("SpawnControllerOnPlane::Spawn:: " + objToSpawn.name + "instanciated at posX :" + posX + " and posZ:" + posZ);
+    }
+
+    void updateNumberGoodFoodSpawned()
+    {
+        numberGoodFoodSpawned++;
+    }
+
+    void updateNumberBadFoodSpawned()
+    {
+        numberBadFoodSpawned++;
+    }
+
+    void updateNumberFood(GameObject objToSpawn)
+    {
+        if (objToSpawn.CompareTag("good") == true)
+        {
+            updateNumberGoodFoodSpawned();
+        }
+        else if (objToSpawn.CompareTag("bad") == true)
+        {
+            updateNumberBadFoodSpawned();
+        }
     }
 }

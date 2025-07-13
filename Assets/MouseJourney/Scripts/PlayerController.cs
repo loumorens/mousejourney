@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
    // private InputAction jumpAction;
     private InputAction movement;
 
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Access player's Rigidbody.
        // jumpAction = InputSystem.actions.FindAction("Jump");
         movement = InputSystem.actions.FindAction("Move");
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -45,15 +47,18 @@ public class PlayerController : MonoBehaviour
     // Handle physics-based movement and rotation.
     private void FixedUpdate()
     {
-        OnMove();
-        // Move player based on vertical input.
-        Vector3 movement = transform.forward * movementY * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + movement);
+        
+        if (gameManager.isGameActive){
+            OnMove();
+            // Move player based on vertical input.
+            Vector3 movement = transform.forward * movementY * speed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + movement);
 
-        // Rotate player based on horizontal input.
-        float turn = movementX * rotationSpeed * Time.fixedDeltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        rb.MoveRotation(rb.rotation * turnRotation);
+            // Rotate player based on horizontal input.
+            float turn = movementX * rotationSpeed * Time.fixedDeltaTime;
+            Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
+            rb.MoveRotation(rb.rotation * turnRotation);
+        }
     }
 
     private void OnMove()
