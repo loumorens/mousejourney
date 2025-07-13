@@ -26,13 +26,13 @@ public class MenuUi : MonoBehaviour
 
     public void Exit()
     {
-        if (EditorApplication.isPlaying)
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        else
-        {
+        //if (EditorApplication.isPlaying)
+        //{
+       //     EditorApplication.ExitPlaymode();
+       // }
+       // else
+        //{
             Application.Quit();
-        }
+       // }
     }
 }

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private int badFoodTotal;
 
     private int nbLifeMax = 3;
-    private int lifeLost = 1;
+    private int lifeLost = 3;
 
     [SerializeField]
     private GameObject[] planeWithCollectible;
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     //UI restart
     public Button restartButton;
+    // UI Got To Main Menu
+    public Button goToMainMenu;
     //UI life lost
     public TextMeshProUGUI lifeLostText;
     //UI nextLevelCanvas
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         UpdateTextTotalGood(0);
         UpdateTextTotalBad(0);
         restartButton.gameObject.SetActive(false);
+        goToMainMenu.gameObject.SetActive(false);
         lifeLostText.gameObject.SetActive(false);
         nextLevelCanvas.gameObject.SetActive(false);
     }
@@ -123,14 +126,15 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Level win. Go to next level.");
             nextLevelCanvas.gameObject.SetActive(true);
+            goToMainMenu.gameObject.SetActive(true);
         }
         if (counter.badFoodCollected == nbBadFoodToCollectToLostOneLife)
         {
-            if (lifeLost < nbLifeMax)
+            if (lifeLost > 0)
             {
                 int nblife = nbLifeMax - lifeLost;
                 Debug.Log("One life lost. You have : " + nblife);
-                lifeLost++;
+                lifeLost--;
                 nbBadFoodToCollectToLostOneLife = nbBadFoodToCollectToLostOneLife / 2;
                 counter.updateBadFoodCollected(0);
                 StartCoroutine(DisplayLifeLost());
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Level Lost. Restart Level or go to main menu.");
                 isGameActive = false;
                 restartButton.gameObject.SetActive(true);
+                goToMainMenu.gameObject.SetActive(true);
             }
         }
     }
@@ -147,6 +152,16 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator DisplayLifeLost()
