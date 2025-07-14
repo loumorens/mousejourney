@@ -7,7 +7,7 @@ using System.Collections;
 [DefaultExecutionOrder(999)]
 public class GameManager : MonoBehaviour
 {
-
+ public static GameManager instance;
     public bool isGameActive;
 
     private int nbGoodFoodToCollectToWinTheLevel;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Awake();
         isGameActive = true;
         counter = new CountCollectible();
         initiateDatasFoodCollectible();
@@ -54,7 +55,26 @@ public class GameManager : MonoBehaviour
         lifeLostText.gameObject.SetActive(false);
         nextLevelCanvas.gameObject.SetActive(false);
     }
+    /* public void Awake()
+    {
+        Debug.Log("GameManager::Awake::");
+        // Check if instance already exists
+        if (instance == null)
+        {
+            // If not, set instance to this
+            instance = this;
+            Debug.Log("GameManager::Awake::instance initiated");
+        }
+        else if (instance != this)
+        {
+            // If instance already exists and it's not this, then destroy this to enforce the singleton.
+            Destroy(gameObject);
+            Debug.Log("GameManager::Awake::instance destroyed");
+        }
 
+        // Set this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+    } */
 
     //Initialize number collectible to collect
     private void updateGoodFoodTotal(GameObject obj)
@@ -147,21 +167,6 @@ public class GameManager : MonoBehaviour
                 goToMainMenu.gameObject.SetActive(true);
             }
         }
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void NextLevel()
-    {
-        
-    }
-
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator DisplayLifeLost()

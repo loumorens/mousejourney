@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Access player's Rigidbody.
        // jumpAction = InputSystem.actions.FindAction("Jump");
         movement = InputSystem.actions.FindAction("Move");
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

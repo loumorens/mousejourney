@@ -9,14 +9,17 @@ EditorBuildSettings:
     path: Assets/MouseJourney/Scenes/MainMenu.unity
     guid: e69c2d1662af27d17b59d1ed8e176806
   - enabled: 1
-    path: Assets/MouseJourney/Scenes/PauseMenu.unity
-    guid: 88db0d916a465289aa3aacc8c38a5383
+    path: Assets/MouseJourney/Scenes/OptionMenu.unity
+    guid: 7e0112220d3847248b89c3e15186b676
   - enabled: 1
-    path: Assets/MouseJourney/Scenes/EndScene.unity
-    guid: 371599dd3422ded98a8111163f30d574
+    path: Assets/MouseJourney/Scenes/Credits.unity
+    guid: c0c87bb38f9e4dafab432332117fe6c4
   - enabled: 1
     path: Assets/MouseJourney/Scenes/HouseScene.unity
     guid: 2924e75dfd06af4789c1b1e84a7e16e4
+  - enabled: 1
+    path: Assets/MouseJourney/Scenes/ForestScene.unity
+    guid: c8f2460f9688234eeace388e45168805
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: fdcb9047ffeae374bbe8084af67bbb4e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

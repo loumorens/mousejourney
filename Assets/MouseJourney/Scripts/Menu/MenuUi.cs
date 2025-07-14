@@ -1,10 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 [DefaultExecutionOrder(1000)]
 public class MenuUi : MonoBehaviour
@@ -13,8 +9,14 @@ public class MenuUi : MonoBehaviour
     {
         if (LoadSceneInGame.instance != null)
         {
-            LoadSceneInGame.instance.LoadSceneByName("HouseScene");
-
+            if (LoadSceneInGame.instance.develMode)
+            {
+                StartNewGameScene(LoadSceneInGame.instance.develSceneToTest);
+            }
+            else
+            {
+                StartNewGameScene("HouseScene");
+            }
         }
         else
         {
@@ -23,16 +25,43 @@ public class MenuUi : MonoBehaviour
         }
     }
 
+    private void StartNewGameScene(String name)
+    { LoadSceneInGame.instance.LoadSceneByName(name);
+    }
+
 
     public void Exit()
     {
-        //if (EditorApplication.isPlaying)
-        //{
-       //     EditorApplication.ExitPlaymode();
-       // }
-       // else
-        //{
-            Application.Quit();
-       // }
+        Application.Quit();
+    }
+
+    public void RestartLevel()
+    {
+        Debug.Log("MenuUi::RestartLevel::scene to load = "+SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        Debug.Log("MenuUi::NextLevel::Choose randomly next level");
+        LoadSceneInGame.instance.LoadRandomScene();
+    }
+
+    public void GoToMainMenu()
+    {
+        Debug.Log("MenuUi::GoToMainMenu");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GoToOptionMenu()
+    {
+        Debug.Log("MenuUi::GoToOptionMenu");
+        SceneManager.LoadScene("OptionMenu");
+    }
+
+    public void GoToCredits()
+    {
+        Debug.Log("MenuUi::GoToCredits");
+        SceneManager.LoadScene("Credits");
     }
 }
