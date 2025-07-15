@@ -7,7 +7,7 @@ using System.Collections;
 [DefaultExecutionOrder(999)]
 public class GameManager : MonoBehaviour
 {
- public static GameManager instance;
+    public static GameManager instance;
     public bool isGameActive;
 
     private int nbGoodFoodToCollectToWinTheLevel;
@@ -161,10 +161,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Level Lost. Restart Level or go to main menu.");
-                isGameActive = false;
-                restartButton.gameObject.SetActive(true);
-                goToMainMenu.gameObject.SetActive(true);
+                LevelLost();
             }
         }
     }
@@ -174,5 +171,13 @@ public class GameManager : MonoBehaviour
         lifeLostText.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         lifeLostText.gameObject.SetActive(false);
+    }
+
+    public void LevelLost()
+    {
+        Debug.Log("Level Lost. Restart Level or go to main menu.");
+        isGameActive = false;
+        restartButton.gameObject.SetActive(true);
+        goToMainMenu.gameObject.SetActive(true);
     }
 }
