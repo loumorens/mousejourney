@@ -10,15 +10,12 @@ public class OptionMenu : MonoBehaviour
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
 
-    [SerializeField] private Toggle musicMute;
-    [SerializeField] private Toggle sfxMute;
 
 
     private void Start()
     {
         Debug.Log("OptionMenu::start");
         LoadVolume();
-        LoadMuted();
     }
 
     public void SetMusicVolume()
@@ -77,62 +74,5 @@ public class OptionMenu : MonoBehaviour
         }
 
     }
-    private void LoadMuted()
-    {
-        Debug.Log("OptionMenu::LoadMuted");
-        if (PlayerPrefs.HasKey("musicMute"))
-        {
-            Debug.Log("OptionMenu::LoadVolume::musicMute exist ::" + PlayerPrefs.GetInt("musicMute"));
-            if (PlayerPrefs.GetInt("musicMute") == 0)
-            {
-                musicMute.isOn = true;
-            }
-            else
-            {
-                musicMute.isOn = false;
-            }
-        }
-        if (PlayerPrefs.HasKey("sfxMute"))        
-        {
-            Debug.Log("OptionMenu::LoadVolume::sfxMute exist ::" + PlayerPrefs.GetInt("sfxMute"));
-            if (PlayerPrefs.GetInt("sfxMute") == 0)
-            {
-                sfxMute.isOn = true;
-            }
-            else
-            {
-                sfxMute.isOn = false;
-            }
-        }
-    }
 
-    public void MusicMute()
-    {
-        Debug.Log("OptionMenu::MusicMute");
-        AudioManager.Instance.ToggleMusic();
-        if (musicMute.isOn)
-        {
-            PlayerPrefs.SetInt("musicMute", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("musicMute", 0);
-        }
-    }
-
-    public void SFXMute()
-    {
-        Debug.Log("OptionMenu::SFXMute");
-        AudioManager.Instance.ToggleSFX();
-        if (sfxMute.isOn)
-        {
-            PlayerPrefs.SetInt("sfxMute", 1);
-            Debug.Log("OptionMenu::SFXMute::true");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("sfxMute", 0);
-            Debug.Log("OptionMenu::SFXMute::false");
-        }
-    }
 }
