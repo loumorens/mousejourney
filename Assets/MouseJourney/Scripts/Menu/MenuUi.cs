@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(1000)]
 public class MenuUi : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic("MenuMusic");
+    }
+
     public void StartNewGame()
     {
         if (LoadSceneInGame.instance != null)
@@ -26,7 +31,8 @@ public class MenuUi : MonoBehaviour
     }
 
     private void StartNewGameScene(String name)
-    { LoadSceneInGame.instance.LoadSceneByName(name);
+    {
+        LoadSceneInGame.instance.LoadSceneByName(name);
     }
 
 

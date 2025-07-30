@@ -1543,7 +1543,7 @@ AudioSource:
   m_GameObject: {fileID: 199327830}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6304264470016404377, guid: fc10cd4d2805cc6c18214163cf9c6204, type: 2}
   m_audioClip: {fileID: 8300000, guid: 155bd1444a4ed1ffd91e1353a45322e0, type: 3}
   m_Resource: {fileID: 8300000, guid: 155bd1444a4ed1ffd91e1353a45322e0, type: 3}
   m_PlayOnAwake: 1
@@ -4580,6 +4580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581332527}
   - component: {fileID: 581332526}
+  - component: {fileID: 581332528}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4628,6 +4629,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581332528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581332525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce18dac9685c4b73858f81e8858223c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &584027823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7486370789847525827, guid: bfa974a01b4cbd94eb18f3e7956f9aca, type: 3}
@@ -16374,7 +16387,7 @@ AudioSource:
   m_GameObject: {fileID: 2130995182}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6923945366853380308, guid: fc10cd4d2805cc6c18214163cf9c6204, type: 2}
   m_audioClip: {fileID: 8300000, guid: e7278847b32d7b9049038a26f89201f2, type: 3}
   m_Resource: {fileID: 8300000, guid: e7278847b32d7b9049038a26f89201f2, type: 3}
   m_PlayOnAwake: 1

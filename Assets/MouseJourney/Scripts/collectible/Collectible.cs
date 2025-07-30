@@ -26,11 +26,18 @@ public class Collectible : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.isGameActive)
         {
 
-            //Destroy the collectible
-            Destroy(gameObject);
-
+            if (gameObject.CompareTag("good"))
+            {
+                AudioManager.Instance.PlaySFX("GoodFood");
+            } else if(gameObject.CompareTag("bad"))
+            {
+                AudioManager.Instance.PlaySFX("BadFood");
+            }
             //Intanciate the particule effect
             Instantiate(onCollectEffect, transform.position, transform.rotation);
+         
+            //Destroy the collectible
+            Destroy(gameObject);
 
             //update total
             gameManager.updateTotalCollected(gameObject);

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         //Awake();
         isGameActive = true;
-        counter = new CountCollectible();
+        counter = GetComponent<CountCollectible>();
         initiateDatasFoodCollectible();
         UpdateTextLife(lifeLost);
         UpdateTextTotalGood(0);
@@ -145,6 +145,7 @@ public class GameManager : MonoBehaviour
         if (counter.goodFoodCollected == nbGoodFoodToCollectToWinTheLevel)
         {
             Debug.Log("Level win. Go to next level.");
+            AudioManager.Instance.PlaySFX("LevelWin");
             nextLevelCanvas.gameObject.SetActive(true);
             goToMainMenu.gameObject.SetActive(true);
         }
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
             {
                 int nblife = nbLifeMax - lifeLost;
                 Debug.Log("One life lost. You have : " + nblife);
+                AudioManager.Instance.PlaySFX("LiveLost");
                 lifeLost--;
                 nbBadFoodToCollectToLostOneLife = nbBadFoodToCollectToLostOneLife / 2;
                 counter.updateBadFoodCollected(0);
@@ -176,6 +178,8 @@ public class GameManager : MonoBehaviour
     public void LevelLost()
     {
         Debug.Log("Level Lost. Restart Level or go to main menu.");
+        AudioManager.Instance.PlaySFX("LevelLost");
+
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
         goToMainMenu.gameObject.SetActive(true);
