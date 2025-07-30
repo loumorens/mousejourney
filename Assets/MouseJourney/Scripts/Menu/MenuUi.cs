@@ -7,7 +7,7 @@ public class MenuUi : MonoBehaviour
 {
     private void Start()
     {
-        AudioManager.Instance.PlayMusic("MenuMusic");
+        AudioManager.Instance.PlayMusicFromName("MenuMusic");
     }
 
     public void StartNewGame()
@@ -26,9 +26,20 @@ public class MenuUi : MonoBehaviour
         else
         {
             Debug.Log("MenuUi::StartNewGame::LoadSceneInGame doesn't initialize");
+            AudioManager.Instance.stopMusic("MenuMusic");
             SceneManager.LoadScene("HouseScene");
+            try
+            {
+                AudioManager.Instance.PlayMusicFromName("HouseScene");
+            }
+            catch
+            {
+                Debug.Log("audiomanager not reachable");
+            }
+
         }
     }
+
 
     private void StartNewGameScene(String name)
     {
@@ -43,7 +54,7 @@ public class MenuUi : MonoBehaviour
 
     public void RestartLevel()
     {
-        Debug.Log("MenuUi::RestartLevel::scene to load = "+SceneManager.GetActiveScene().name);
+        Debug.Log("MenuUi::RestartLevel::scene to load = " + SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

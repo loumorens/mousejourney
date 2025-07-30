@@ -28,10 +28,24 @@ public class Collectible : MonoBehaviour
 
             if (gameObject.CompareTag("good"))
             {
-                AudioManager.Instance.PlaySFX("GoodFood");
+                try
+                {
+                    AudioManager.Instance.PlaySFX("GoodFood");
+                }
+                catch
+                {
+                    Debug.Log("audiomanager not reachable");
+                }
             } else if(gameObject.CompareTag("bad"))
             {
-                AudioManager.Instance.PlaySFX("BadFood");
+                try
+                {
+                    AudioManager.Instance.PlaySFX("BadFood");
+                }
+                catch
+                {
+                    Debug.Log("audiomanager not reachable");
+                }
             }
             //Intanciate the particule effect
             Instantiate(onCollectEffect, transform.position, transform.rotation);
