@@ -58,7 +58,8 @@ public class LoadSceneInGame : MonoBehaviour
     public void LoadSceneByName(String name)
     {
         SceneManager.LoadScene(name);
-        AudioManager.Instance.PlayMusicFromScene(name);
+        Debug.Log("LoadSceneInGame::LoadSceneByName::PlayMusicFromName::"+name);
+        AudioManager.Instance.PlayMusicFromName(name);
 
     }
 

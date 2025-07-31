@@ -6,5 +6,5 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class MusicData : Sound
 {
-    public SceneAsset scene;    
+    //public SceneAsset scene;    
 }

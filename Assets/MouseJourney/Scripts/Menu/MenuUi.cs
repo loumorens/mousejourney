@@ -5,37 +5,36 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(1000)]
 public class MenuUi : MonoBehaviour
 {
-    private void Start()
-    {
-        AudioManager.Instance.PlayMusicFromName("MenuMusic");
-    }
+   
 
     public void StartNewGame()
     {
+        Debug.Log("MenuUi::StartNewGame");
+        Debug.Log("MenuUi::StartNewGame:: Stop menu music");
+        AudioManager.Instance.stopMusic("MenuMusic");
         if (LoadSceneInGame.instance != null)
         {
             if (LoadSceneInGame.instance.develMode)
             {
+                Debug.Log("MenuUi::StartNewGame::LoadSceneInGame::OK ");
                 StartNewGameScene(LoadSceneInGame.instance.develSceneToTest);
             }
             else
             {
-                StartNewGameScene("HouseScene");
+
+                SceneManager.LoadScene("HouseScene");
+                Debug.Log("MenuUi::StartNewGame::PlayMusicFromName::HouseScene ");
+                AudioManager.Instance.PlayMusicFromName("HouseScene");
             }
         }
         else
         {
             Debug.Log("MenuUi::StartNewGame::LoadSceneInGame doesn't initialize");
-            AudioManager.Instance.stopMusic("MenuMusic");
+
             SceneManager.LoadScene("HouseScene");
-            try
-            {
-                AudioManager.Instance.PlayMusicFromName("HouseScene");
-            }
-            catch
-            {
-                Debug.Log("audiomanager not reachable");
-            }
+            Debug.Log("MenuUi::StartNewGame::PlayMusicFromName::HouseScene ");
+            AudioManager.Instance.PlayMusicFromName("HouseScene");
+
 
         }
     }
@@ -43,7 +42,12 @@ public class MenuUi : MonoBehaviour
 
     private void StartNewGameScene(String name)
     {
+
         LoadSceneInGame.instance.LoadSceneByName(name);
+
+        Debug.Log("MenuUi::StartNewGameScene::PlayMusicFromName:: " + name);
+        AudioManager.Instance.PlayMusicFromName(name);
+
     }
 
 
