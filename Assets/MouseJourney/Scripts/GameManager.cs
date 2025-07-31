@@ -130,14 +130,7 @@ public class GameManager : MonoBehaviour
     public void UpdateTextLife(int number)
     {
         Debug.Log("GameManager::UpdateTextLife::number:: " + number + " ::nbLifeMax:: " + nbLifeMax);
-        // try
-        // {
-        //     life.text = "Life : " + number + " / " + nbLifeMax;
-        // }
-        // catch
-        // {
-        //     Debug.Log("GameManager::UpdateTextLife::catch::Exception::");
-        // }
+        
         if (life != null)
         {
             life.text = "Life : " + number + " / " + nbLifeMax;

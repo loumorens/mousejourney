@@ -10,8 +10,6 @@ public class MenuUi : MonoBehaviour
     public void StartNewGame()
     {
         Debug.Log("MenuUi::StartNewGame");
-        Debug.Log("MenuUi::StartNewGame:: Stop menu music");
-        AudioManager.Instance.stopMusic("MenuMusic");
         if (LoadSceneInGame.instance != null)
         {
             if (LoadSceneInGame.instance.develMode)
@@ -22,7 +20,7 @@ public class MenuUi : MonoBehaviour
             else
             {
 
-                SceneManager.LoadScene("HouseScene");
+                StartNewGameScene("HouseScene");
                 Debug.Log("MenuUi::StartNewGame::PlayMusicFromName::HouseScene ");
                 AudioManager.Instance.PlayMusicFromName("HouseScene");
             }
@@ -59,7 +57,7 @@ public class MenuUi : MonoBehaviour
     public void RestartLevel()
     {
         Debug.Log("MenuUi::RestartLevel::scene to load = " + SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartNewGameScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevel()
@@ -71,18 +69,18 @@ public class MenuUi : MonoBehaviour
     public void GoToMainMenu()
     {
         Debug.Log("MenuUi::GoToMainMenu");
-        SceneManager.LoadScene("MainMenu");
+        StartNewGameScene("MainMenu");
     }
 
     public void GoToOptionMenu()
     {
         Debug.Log("MenuUi::GoToOptionMenu");
-        SceneManager.LoadScene("OptionMenu");
+        StartNewGameScene("OptionMenu");
     }
 
     public void GoToCredits()
     {
         Debug.Log("MenuUi::GoToCredits");
-        SceneManager.LoadScene("Credits");
+        StartNewGameScene("Credits");
     }
 }

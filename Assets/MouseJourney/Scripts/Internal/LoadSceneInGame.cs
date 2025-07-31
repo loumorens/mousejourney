@@ -20,8 +20,6 @@ public class LoadSceneInGame : MonoBehaviour
 
     public String develSceneToTest;
 
-    //The first game scene to play - not menu scene
-    private int firstRealScene = 4;
 
     public List<String> sceneCanBeLoaded;
 
@@ -51,10 +49,7 @@ public class LoadSceneInGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadSceneByIndex(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
+    
     public void LoadSceneByName(String name)
     {
         SceneManager.LoadScene(name);
@@ -78,10 +73,7 @@ public class LoadSceneInGame : MonoBehaviour
         }
     }
 
-    private int getRandomIndex()
-    {
-        return Random.Range(firstRealScene, SceneManager.sceneCountInBuildSettings);
-    }
+   
     private String getRandomName()
     {
         String name;

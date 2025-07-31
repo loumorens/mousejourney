@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class CountCollectible : MonoBehaviour
 {
-    public int goodFoodCollected {get; private set;}
+    // ENCAPSULATION
+    public int goodFoodCollected { get; private set; }
     
     public int badFoodCollected {get; private set;}
 

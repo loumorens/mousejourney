@@ -24,11 +24,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-   /*  public void PlayMusicFromScene(String sceneName)
-    {
-        MusicData md = Array.Find(musicSounds, x => x.scene.name == sceneName);
-        PlayMusic(md);
-    } */
+  
     public void PlayMusicFromName(String name)
     {
         MusicData md = Array.Find(musicSounds, x => x.name == name);
@@ -110,19 +106,6 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 
-    /* private String searchMusicToPlayForScene(String sceneName)
-    {
 
-        MusicData scene = Array.Find(musicSounds, x => x.scene.name == sceneName);
-        if (scene != null)
-        {
-            return scene.name;
-        }
-        else
-        {
-            Debug.Log("Sounf file not found");
-            return "";
-        }
-    } */
 }
 

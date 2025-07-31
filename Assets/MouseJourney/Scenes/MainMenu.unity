@@ -1718,18 +1718,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: HouseScene
-    clip: {fileID: 8300000, guid: 5b8e6be481cee9d5a94274db9f9a3509, type: 3}
+    clip: {fileID: 8300000, guid: caaba547aca7bec6aa589088ef80defc, type: 3}
   - name: ForestScene
     clip: {fileID: 8300000, guid: 60809596917dd03c6985ae7437d2bfa4, type: 3}
-  - name: OptionMenu
-    clip: {fileID: 8300000, guid: caaba547aca7bec6aa589088ef80defc, type: 3}
   - name: LaboScene
     clip: {fileID: 8300000, guid: 57443ce6d4e59c95b82af2d9863e22a3, type: 3}
+  - name: OptionMenu
+    clip: {fileID: 8300000, guid: 5b8e6be481cee9d5a94274db9f9a3509, type: 3}
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: 5b8e6be481cee9d5a94274db9f9a3509, type: 3}
+  - name: Credits
+    clip: {fileID: 8300000, guid: caaba547aca7bec6aa589088ef80defc, type: 3}
   sfxSounds:
   - name: GoodFood
     clip: {fileID: 8300000, guid: 9217f9fb9c9914260b4ccb50d76d9fc9, type: 3}
   - name: BadFood
-    clip: {fileID: 8300000, guid: 1c8ccceede04240cbb129e5554967a51, type: 3}
+    clip: {fileID: 8300000, guid: 143bc7b7848154a78b7057d23ae85569, type: 3}
   - name: LevelWin
     clip: {fileID: 8300000, guid: 1a1f66a2481cc4201b08ee51f23b9104, type: 3}
   - name: LevelLost
