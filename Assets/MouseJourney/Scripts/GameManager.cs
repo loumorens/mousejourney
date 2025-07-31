@@ -47,35 +47,22 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         counter = GetComponent<CountCollectible>();
         initiateDatasFoodCollectible();
-        UpdateTextLife(lifeLost);
-        UpdateTextTotalGood(0);
-        UpdateTextTotalBad(0);
-        restartButton.gameObject.SetActive(false);
-        goToMainMenu.gameObject.SetActive(false);
-        lifeLostText.gameObject.SetActive(false);
-        nextLevelCanvas.gameObject.SetActive(false);
+        try
+        {
+            UpdateTextLife(lifeLost);
+            UpdateTextTotalGood(0);
+            UpdateTextTotalBad(0);
+            restartButton.gameObject.SetActive(false);
+            goToMainMenu.gameObject.SetActive(false);
+            lifeLostText.gameObject.SetActive(false);
+            nextLevelCanvas.gameObject.SetActive(false);
+        }
+        catch
+        {
+            Debug.Log("GameManager::Start::catch");
+        }
     }
-    /* public void Awake()
-    {
-        Debug.Log("GameManager::Awake::");
-        // Check if instance already exists
-        if (instance == null)
-        {
-            // If not, set instance to this
-            instance = this;
-            Debug.Log("GameManager::Awake::instance initiated");
-        }
-        else if (instance != this)
-        {
-            // If instance already exists and it's not this, then destroy this to enforce the singleton.
-            Destroy(gameObject);
-            Debug.Log("GameManager::Awake::instance destroyed");
-        }
-
-        // Set this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
-    } */
-
+   
     //Initialize number collectible to collect
     private void updateGoodFoodTotal(GameObject obj)
     {
@@ -118,24 +105,53 @@ public class GameManager : MonoBehaviour
     //UI
     public void UpdateTextTotalGood(int number)
     {
-        totalGood.text = "Total good : " + number + " / " + nbGoodFoodToCollectToWinTheLevel;
+         if(totalGood != null)
+        {
+            totalGood.text = "Total good : " + number + " / " + nbGoodFoodToCollectToWinTheLevel;
+        }
+        else
+        {
+            Debug.Log("GameManager::UpdateTextTotalGood::totalGood is null");
+        }
     }
 
     public void UpdateTextTotalBad(int number)
     {
-        totalBad.text = "Total bad : " + number + " / " + nbBadFoodToCollectToLostOneLife;
+        if(totalBad != null)
+        {
+            totalBad.text = "Total bad : " + number + " / " + nbBadFoodToCollectToLostOneLife;
+        }
+        else
+        {
+            Debug.Log("GameManager::UpdateTextTotalBad::totalBad is null");
+        }
     }
 
     public void UpdateTextLife(int number)
     {
-        life.text = "Life : " + number + " / " + nbLifeMax;
+        Debug.Log("GameManager::UpdateTextLife::number:: " + number + " ::nbLifeMax:: " + nbLifeMax);
+        // try
+        // {
+        //     life.text = "Life : " + number + " / " + nbLifeMax;
+        // }
+        // catch
+        // {
+        //     Debug.Log("GameManager::UpdateTextLife::catch::Exception::");
+        // }
+        if (life != null)
+        {
+            life.text = "Life : " + number + " / " + nbLifeMax;
+        }
+        else
+        {
+            Debug.Log("GameManager::UpdateTextLife::life is null");
+        }
     }
 
     public void UpdateText()
     {
         UpdateTextTotalGood(counter.goodFoodCollected);
         UpdateTextTotalBad(counter.badFoodCollected);
-        UpdateTextLife(lifeLost);
     }
 
     //CountCollectible
@@ -157,6 +173,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("One life lost. You have : " + nblife);
                 AudioManager.Instance.PlaySFX("LiveLost");
                 lifeLost--;
+                UpdateTextLife(lifeLost);
+
                 nbBadFoodToCollectToLostOneLife = nbBadFoodToCollectToLostOneLife / 2;
                 counter.updateBadFoodCollected(0);
                 StartCoroutine(DisplayLifeLost());
